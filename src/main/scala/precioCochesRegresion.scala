@@ -22,13 +22,12 @@ object precioCochesRegresion {
 
     val labelIndexer = new StringIndexer().setInputCol("City").setOutputCol("cityIndexed").fit(data).transform(data)
     val labelIndexer2 = new StringIndexer().setInputCol("State").setOutputCol("stateIndexed").fit(labelIndexer).transform(labelIndexer)
-    val labelIndexer3 = new StringIndexer().setInputCol("Vin").setOutputCol("vinIndexed").fit(labelIndexer2).transform(labelIndexer2)
-    val labelIndexer4 = new StringIndexer().setInputCol("Make").setOutputCol("makeIndexed").fit(labelIndexer3).transform(labelIndexer3)
+    val labelIndexer4 = new StringIndexer().setInputCol("Make").setOutputCol("makeIndexed").fit(labelIndexer2).transform(labelIndexer2)
     val labelIndexer5 = new StringIndexer().setInputCol("Model").setOutputCol("modelIndexed").fit(labelIndexer4).transform(labelIndexer4)
 
     val data2 = labelIndexer5.drop("City","State","Vin","Make","Model")
 
-    val featureCols = Array("Year","Mileage","cityIndexed","stateIndexed","vinIndexed","makeIndexed","modelIndexed")
+    val featureCols = Array("Year","Mileage","cityIndexed","stateIndexed","makeIndexed","modelIndexed")
     val assembler = new VectorAssembler().setInputCols(featureCols).setOutputCol("features")
     val df2 = assembler.transform(data2)
 
@@ -45,7 +44,7 @@ object precioCochesRegresion {
     val lrModel = lr.fit(df2)
     // Print the coefficients and intercept for linear regression
     println(s"Coefficients: ${lrModel.coefficients} Intercept: ${lrModel.intercept}")
-    lrModel.save("/Users/hubsantander/Desktop/modeloRC")
+    lrModel.save("/Users/hubsantander/Desktop/modeloCoches")
 
     // Summarize the model over the training set and print out some metrics
     val trainingSummary = lrModel.summary
