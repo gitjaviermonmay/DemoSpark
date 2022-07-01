@@ -45,6 +45,7 @@ object precioCochesRegresion {
     val lrModel = lr.fit(df2)
     // Print the coefficients and intercept for linear regression
     println(s"Coefficients: ${lrModel.coefficients} Intercept: ${lrModel.intercept}")
+    lrModel.save("/Users/hubsantander/Desktop/modeloRC")
 
     // Summarize the model over the training set and print out some metrics
     val trainingSummary = lrModel.summary

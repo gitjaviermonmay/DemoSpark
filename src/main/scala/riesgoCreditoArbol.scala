@@ -43,6 +43,8 @@ object riesgoCreditoArbol {
     //randomForestClassifier.setMaxDepth(4)
     val model = randomForestClassifier.fit(trainingSet)
 
+    model.save("/Users/hubsantander/Desktop/modeloRC")
+
     val predictions = model.transform(testSet)
 
     // evaluate the model
