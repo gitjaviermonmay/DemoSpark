@@ -35,9 +35,9 @@ object precioCochesRegresion {
     df2.show(5)
 
     val lr = new LinearRegression()
-      .setMaxIter(25)
-      .setRegParam(0.1)
-      .setElasticNetParam(0.7)
+      .setMaxIter(50)
+      .setRegParam(0)
+      .setElasticNetParam(0)
       .setLabelCol("Price")
       .setFeaturesCol("features")
 

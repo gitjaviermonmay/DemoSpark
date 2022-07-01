@@ -32,8 +32,8 @@ object riesgoCreditoArbol {
     val featureSet = assembler.transform(df)
 
     // split data random in trainingset (70%) and testset (30%)
-    val seed = 5043
-    val trainingAndTestSet = featureSet.randomSplit(Array[Double](0.7, 0.3), seed)
+    val seed = 7043
+    val trainingAndTestSet = featureSet.randomSplit(Array[Double](0.85, 0.15), seed)
     val trainingSet = trainingAndTestSet(0)
     val testSet = trainingAndTestSet(1)
 
@@ -48,6 +48,6 @@ object riesgoCreditoArbol {
     // evaluate the model
     val evaluator = new MulticlassClassificationEvaluator()
 
-    System.out.println("accuracy: " + evaluator.evaluate(predictions))
+    System.out.println("La precisión del algoritmo es: " + evaluator.evaluate(predictions)*100 + " %")
   }
 }
